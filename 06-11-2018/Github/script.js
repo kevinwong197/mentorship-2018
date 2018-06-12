@@ -3,20 +3,25 @@ const app = new Vue({
     data: {
         username: '',
         login: null,
+        error: false,
+        errormsg: ''
     },
     methods: {
         search() {
+            app.login = null;
             if (this.username.length > 0) {
                 const apiUrl = 'https://api.github.com/users/' + this.username;
                 axios.get(apiUrl).then(function(response) {
-                    console.log(response);
-                    this.login = response.data.login;
+                    app.error = false;
+                    app.login = response.data.login;
                 }, function(err) {
-                    console.log(err);
+                    app.error = true;
+                    app.errormsg = err.response.statusText;
+                    console.log(err.statusText);
                 });
-            }
-            else {
-                // show validation
+            } else {
+                app.error = true;
+                app.errormsg = 'Input Field Cannot Be Empty';
             }
         },
     }
