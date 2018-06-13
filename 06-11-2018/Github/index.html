@@ -11,7 +11,9 @@
             <div v-if="error" style="color: red">{{errormsg}}</div>
             <input v-model="username" type="text" placeholder="Username" />
             <button v-on:click="search" id="search">Search</button>
-            <div v-if="login">{{login}}</div>
+            <div class="cards" v-for="card in cardlist">
+                <div class="card">{{card}}</div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
