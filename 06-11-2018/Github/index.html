@@ -11,11 +11,10 @@
             <div v-if="error" style="color: red">{{errormsg}}</div>
             <input v-model="username" type="text" placeholder="Username" />
             <button v-on:click="search" id="search">Search</button>
-            <div class="cards" v-for="card in cardlist">
-                <div class="card">{{card}}</div>
-            </div>
+            <github-card v-for="card in cardlist" v-bind:card="card" />
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
