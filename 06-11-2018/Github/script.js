@@ -40,7 +40,7 @@ const app = new Vue({
                 this.error = true;
                 this.errormsg = 'Input Field Cannot Be Empty';
             }
-        },
+        }
     }
 });
 
