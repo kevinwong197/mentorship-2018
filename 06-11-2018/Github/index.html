@@ -1,55 +1,55 @@
 <!doctype html>
 <html>
 <head>
-    <title>Github Card</title>
-    <script src="node_modules/vue/dist/vue.min.js"></script>
-    <script src="node_modules/axios/dist/axios.min.js"></script>
+  <title>Github Card</title>
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+  <script src="node_modules/axios/dist/axios.min.js"></script>
 </head>
 
 <style>
 body {
-    background-color: #eee;
-    font-family: 'Roboto', sans-serif;
+  background-color: #eee;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
-    text-align: center;
-    width: 480px;
-    margin: 0 auto;
+  text-align: center;
+  width: 480px;
+  margin: 0 auto;
 }
 
 .card {
-    background-color: #fff;
-    font-weight: 300;
-    padding: 16px;
-    margin-top: 10px;
+  background-color: #fff;
+  font-weight: 300;
+  padding: 16px;
+  margin-top: 10px;
 }
 
 .followers, .following {
-    color: #0084d7;
-    font-size: 12px;
-    margin-top: 12px;
+  color: #0084d7;
+  font-size: 12px;
+  margin-top: 12px;
 }
 
 .avatar {
-    margin: 15px 0 0;
-    width: 60px;
+  margin: 15px 0 0;
+  width: 60px;
 }
 
 .error {
-    color: red;
+  color: red;
 }
 </style>
 
 <body>
-    <div id="app">
-        <div class="container">
-            <div class="error" v-if="error">{{errormsg}}</div>
-            <input v-model="username" type="text" placeholder="Username" />
-            <button v-on:click="search" id="search">Search</button>
-            <github-card v-for="card in cardlist" v-bind:card="card" />
-        </div>
+  <div id="app">
+    <div class="container">
+      <div class="error" v-if="error">{{errormsg}}</div>
+      <input v-model="username" type="text" placeholder="Username" />
+      <button v-on:click="search" id="search">Search</button>
+      <github-card v-for="card in cardlist" v-bind:card="card" />
     </div>
-    <script src="script.js"></script>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
