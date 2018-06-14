@@ -4,7 +4,7 @@ Vue.component('github-card', {
 <a :href="card.html_url">
   <div class="card">
     <img class="avatar" :src="card.avatar_url" />
-    <div class="name">name: {{card.login}}</div>
+    <div class="name">{{card.login}}</div>
     <div class="followers">followers: {{card.followers}}</div>
     <div class="following">follwing: {{card.following}}</div>
   </div>
