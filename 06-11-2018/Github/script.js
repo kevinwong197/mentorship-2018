@@ -23,6 +23,7 @@ const app = new Vue({
   methods: {
     search() {
       if (this.username.length > 0) {
+        this.cardlist = this.cardlist.filter(c => c.login.toUpperCase() !== this.username.toUpperCase());
         const apiUrl = 'https://api.github.com/users/' + this.username;
         axios.get(apiUrl).then(response => {
           this.error = false;
