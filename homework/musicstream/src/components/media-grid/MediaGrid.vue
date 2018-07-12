@@ -24,6 +24,7 @@
 import EventBus from '@/main';
 import MediaRow from '@/components/media-grid/MediaRow.vue';
 import vimeoService from '@/services/vimeo.service';
+import youtubeService from '@/services/youtube.service';
 import parserService from '@/services/parser.service';
 
 export default {
@@ -47,8 +48,9 @@ export default {
   },
   methods: {
     search(query) {
-      vimeoService.searchVimeo(query).then((response) => {
-        this.vidRows = this.toRows(parserService.fromVimeo(response));
+      youtubeService.searchYoutube(query).then((response) => {
+        console.log(response);
+        this.vidRows = this.toRows(parserService.fromYoutube(response));
         this.finished = true;
         this.error = false;
       }, (err) => {

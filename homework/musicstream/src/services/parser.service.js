@@ -8,6 +8,15 @@ const service = {
       }
     });
   },
+  fromYoutube(response) {
+    return response.data.items.map(video => {
+      return {
+        title: video.snippet.title,
+        url: `https://www.youtube.com/watch?v=${video.id.videoId}`,
+        thumb: video.snippet.thumbnails.default.url
+      }
+    });
+  },
   default() {
     return {
       title: '',
