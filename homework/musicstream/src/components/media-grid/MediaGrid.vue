@@ -5,6 +5,9 @@
         :key="key"
         :videos="vidRow" />
     </div>
+    <div v-else-if="gotError()">
+      Error: {{errorMsg}}
+    </div>
     <div v-else-if="noResults()">
       No results found
     </div>
@@ -29,7 +32,9 @@ export default {
       vidRows: [],
       colsz: 5,
       finished: false,
-      started: false
+      started: false,
+      error: false,
+      errorMsg: ''
     }
   },
   mounted() {
@@ -43,11 +48,13 @@ export default {
   methods: {
     search(query) {
       vimeoService.searchVimeo(query).then((response) => {
-        console.log(response);
         this.vidRows = this.toRows(parserService.fromVimeo(response));
         this.finished = true;
+        this.error = false;
       }, (err) => {
-        console.log(err);
+        this.finished = true;
+        this.error = true;
+        this.errorMsg = err.response.statusText;
       });
     },
     toRows(arr) {
@@ -63,20 +70,30 @@ export default {
           return arr[head + col] || defaultVal;
         }));
       }
-      console.log(narr);
       return narr;
     },
     clear() {
       this.vidRows = [];
     },
     loading() {
-      return this.started && !this.finished;
+      return this.started &&
+        !this.finished;
     },
     noResults() {
-      return this.started && this.finished && this.vidRows.length <= 0;
+      return this.started &&
+        this.finished &&
+        this.vidRows.length <= 0;
     },
     gotResults() {
-      return this.started && this.finished && this.vidRows.length > 0;
+      return this.started &&
+        this.finished &&
+        this.vidRows.length > 0 &&
+        !this.error;
+    },
+    gotError() {
+      return this.started &&
+        this.finished &&
+        this.error;
     }
   },
   components: {

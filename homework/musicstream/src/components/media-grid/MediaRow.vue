@@ -1,6 +1,7 @@
 <template>
   <div class="row">
-    <Media v-for="video in videos"
+    <Media v-for="(video, key) in videos"
+      :key="key"
       :url="video.url"
       :thumb="video.thumb"
       :title="video.title" />
