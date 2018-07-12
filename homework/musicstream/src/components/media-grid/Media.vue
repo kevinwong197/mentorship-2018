@@ -1,12 +1,12 @@
 <template>
-  <div class="col card">
+  <a :href="url" class="col card">
     <div class="card-body">
       <img class="thumb" :src="thumb" />
       <div class="title">
         {{title}}
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -31,3 +31,9 @@ export default {
 
 
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>
