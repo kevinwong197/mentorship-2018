@@ -19,6 +19,7 @@ export default {
   },
   mounted() {
     EventBus.$on('search', (query) => {
+      this.clear();
       this.search(query);
     });
   },
@@ -46,6 +47,9 @@ export default {
       }
       console.log(narr);
       return narr;
+    },
+    clear() {
+      this.vidRows = [];
     }
   },
   components: {
