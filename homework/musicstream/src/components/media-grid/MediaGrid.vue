@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container remove-all-margin">
     <div v-if="gotResults()">
       <MediaRow v-for="(vidRow, key) in vidRows"
         :key="key"
