@@ -1,6 +1,17 @@
 <template>
   <div class="container">
-    <MediaRow v-for="vidRow in vidRows" :videos="vidRow"></MediaRow>
+    <div v-if="gotResults()">
+      <MediaRow v-for="(vidRow, key) in vidRows" :key="key" :videos="vidRow" />
+    </div>
+    <div v-else-if="noResults()">
+      No results found
+    </div>
+    <div v-else-if="loading()">
+      Loading...
+    </div>
+    <div v-else>
+      Videos go here
+    </div>
   </div>
 </template>
 
@@ -14,11 +25,15 @@ export default {
   data() {
     return {
       vidRows: [],
-      colsz: 5
+      colsz: 5,
+      finished: false,
+      started: false
     }
   },
   mounted() {
     EventBus.$on('search', (query) => {
+      this.started = true;
+      this.finished = false;
       this.clear();
       this.search(query);
     });
@@ -28,6 +43,7 @@ export default {
       vimeoService.searchVimeo(query).then((response) => {
         console.log(response);
         this.vidRows = this.toRows(parserService.fromVimeo(response));
+        this.finished = true;
       }, (err) => {
         console.log(err);
       });
@@ -50,6 +66,15 @@ export default {
     },
     clear() {
       this.vidRows = [];
+    },
+    loading() {
+      return this.started && !this.finished;
+    },
+    noResults() {
+      return this.started && this.finished && this.vidRows.length <= 0;
+    },
+    gotResults() {
+      return this.started && this.finished && this.vidRows.length > 0;
     }
   },
   components: {

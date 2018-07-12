@@ -1,8 +1,10 @@
 <template>
-  <div class="col preview">
-    <img class="thumb" :src="thumb" />
-    <div class="title">
-      {{title}}
+  <div class="col card">
+    <div class="card-body">
+      <img class="thumb" :src="thumb" />
+      <div class="title">
+        {{title}}
+      </div>
     </div>
   </div>
 </template>
