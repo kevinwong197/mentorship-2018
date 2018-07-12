@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '84921107d9a327259ccf88148da2dd62';
+const API_KEY = '';
 const API_URL = 'https://api.vimeo.com/';
 
 const service = {

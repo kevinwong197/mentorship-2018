@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div v-if="gotResults()">
-      <MediaRow v-for="(vidRow, key) in vidRows" :key="key" :videos="vidRow" />
+      <MediaRow v-for="(vidRow, key) in vidRows"
+        :key="key"
+        :videos="vidRow" />
     </div>
     <div v-else-if="noResults()">
       No results found
