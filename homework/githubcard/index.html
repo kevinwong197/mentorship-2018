@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <title>Github Card</title>
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+  <script src="node_modules/axios/dist/axios.min.js"></script>
+</head>
+
+<style>
+body {
+  background-color: #eee;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  text-align: center;
+  width: 480px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fff;
+  font-weight: 300;
+  padding: 16px;
+  margin-top: 10px;
+  box-shadow: 0 20px 60px rgba(10, 10, 10, 0.05), 0 5px 10px rgba(10, 10, 10, 0.1), 0 1px 1px rgba(10, 10, 10, 0.2);
+}
+
+.name {
+  color: #000;
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.followers, .following {
+  color: #0084d7;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.avatar {
+  margin: 15px 0 0;
+  width: 60px;
+}
+
+.error {
+  color: red;
+}
+</style>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="error" v-if="error">{{errormsg}}</div>
+      <input v-model="username" type="text" placeholder="Username" />
+      <button v-on:click="search" id="search">Search</button>
+      <github-card v-for="card in cardlist" v-bind:card="card" />
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

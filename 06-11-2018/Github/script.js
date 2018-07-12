@@ -13,36 +13,25 @@ Vue.component('github-card', {
 });
 
 const app = new Vue({
-  el: '#app',
-  data: {
-    username: '',
-    error: false,
-    errormsg: '',
-    cardlist: []
-  },
-  methods: {
-    search() {
-      if (this.username.length > 0) {
-        this.cardlist = this.cardlist.filter(c => c.login.toUpperCase() !== this.username.toUpperCase());
-        const apiUrl = 'https://api.github.com/users/' + this.username;
-        axios.get(apiUrl).then(response => {
-          this.error = false;
-          console.log(response.data);
-          this.cardlist.unshift({
-            login: response.data.login,
-            avatar_url: response.data.avatar_url,
-            followers: response.data.followers,
-            following: response.data.following,
-            html_url: response.data.html_url
-          });
-        }, err => {
-          this.error = true;
-          this.errormsg = err.response.statusText;
-        });
-      } else {
-        this.error = true;
-        this.errormsg = 'Input Field Cannot Be Empty';
-      }
+    el: '#app',
+    data: {
+        username: '',
+        login: null,
+    },
+    methods: {
+        search() {
+            if (this.username.length > 0) {
+                const apiUrl = 'https://api.github.com/users/' + this.username;
+                axios.get(apiUrl).then(function(response) {
+                    this.login = response.data.login;
+                }, (err) => {
+                    console.log(err);
+                });
+            }
+            else {
+                // show validation
+            }
+        },
     }
   }
 });

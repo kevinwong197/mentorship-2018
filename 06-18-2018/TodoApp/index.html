@@ -9,19 +9,14 @@
         <div id="app">
             <h2>Introducing Vue, a Component Framework</h2>
 
-            <button v-on:click="myFunc">Click Me</button>
+            <button v-on:click="clickAction">Click Me</button>
             <div v-if="message">
                 <br>
                 {{message}}
             </div>
 
             <h2>Hello, {{name}}, Here is your todo list for today</h2>
-            <ul>
-                <li v-for="todo, index in todoList">
-                    <!-- <span v-if="index === 2">{{todo}}</span> -->
-                    {{todo}}
-                </li>
-            </ul>
+            <todo-list></todo-list>
         </div>
 
         <script src="script.js"></script>
